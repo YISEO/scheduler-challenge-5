@@ -11,10 +11,15 @@ $(function () {
   // present time blocks for standard business hours of 9am to 5pm
   function displayTimeBlocks(){
     for(let hour = 9; hour <= 17; hour++){
+      let displayHour = hour;
+      if (hour > 12){
+        displayHour = hour - 12;
+      }
+
       timeBlockDiv = $("<div></div>").attr("id", "hour-" + hour).addClass("row time-block");
       let timeBlockContents = 
       `
-      <div class="col-2 col-md-1 hour text-center py-3">${hour > 12? hour + ":00 PM" : hour + ":00 AM"}</div>
+      <div class="col-2 col-md-1 hour text-center py-3">${hour > 11? displayHour + ":00 PM" : displayHour + ":00 AM"}</div>
       <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
       <button class="btn saveBtn col-2 col-md-1" aria-label="save">
       <i class="fas fa-save" aria-hidden="true"></i>
